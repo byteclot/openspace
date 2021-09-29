@@ -1,0 +1,113 @@
+body {
+    background-color: black;
+}
+
+.space {
+    position: relative;
+    height: 100vh;
+    width: 90%;
+    margin: auto;
+    background-image: url("space.png");
+}
+
+.planet-area {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 500px;
+    width: 500px;
+    z-index: 1;
+}
+
+.planet {
+    position: relative;
+    overflow: hidden;
+    width: 500px;
+    height: 500px;
+    z-index: 2;
+}
+
+.rocket {
+    position: absolute;
+    top: 125px;
+    right: 120px;
+    height: 100px;
+    width: 100px;
+    z-index: 3;
+    transform: rotate(35deg);
+}
+
+.control-panel {
+    position: absolute;
+    right: 50px;
+    bottom: 100px;
+    height: 210px;
+    width: 485px;
+    background: repeating-linear-gradient(
+            45deg,
+            black,
+            yellow 0px,
+            black 20px,
+            yellow 20px
+    );
+}
+
+.control-panel__inner {
+    background-color: grey;
+    position: relative;
+    margin: 10px;
+    padding: 15px;
+}
+
+.check-buttons {
+    display: flex;
+    width: 450px;
+    margin: auto;
+    padding: 5px;
+    justify-content: space-evenly;
+}
+
+.levers {
+    display: flex;
+    justify-content: space-evenly;
+    width: 450px;
+    height: 80px;
+    margin: auto;
+    padding: 5px;
+}
+
+.slider {
+    position: relative;
+    width: 72px;
+    transform: rotate(270deg);
+    border: solid blue 3px;
+}
+
+#launch-btn {
+    color: white;
+    margin-left: 200px;
+    background-color: red;
+    border: solid white 2px;
+    border-radius: 35%;
+}
+
+#launch-btn:disabled {
+    background-color: gray;
+}
+
+#ok {
+    border-radius: 35%;
+    background-color: yellow;
+}
+
+#password {
+    margin-left: 120px;
+    width: 170px;
+    background-color: grey;
+    color: yellow;
+    border: inset yellow 1px;
+}
+
+#password::placeholder {
+    color: yellow;
+}
