@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Open Space</title>
+    <link rel="stylesheet" href="styles.css">
+    <script async>
+        window.onload = function() {
+            enableElements(false);
+        };
+
+        function checkPassword() {
+            let pass = document.getElementById("password").value;
+            let result = false;
+            if(pass === "TrustNo1") result = true;
+            enableElements(result);
+        }
+
+        function enableElements(trust) {
+            let parent1 = document.getElementsByClassName("check-buttons")[0];
+            let parent2 = document.getElementsByClassName("levers")[0];
+            let children = parent1.children;
+            let children2 = parent2.children;
+            let launch_btn = document.getElementById("launch-btn");
+
+            for(let i = 0; i < children.length; i++) {
+                if (trust === true) {
+                    children[i].removeAttribute("disabled");
+                    children2[i].removeAttribute("disabled");
+                    document.getElementById("password").setAttribute("disabled", "");
+                    document.getElementById("ok").setAttribute("disabled", "");
+                }    else {
+                    children[i].setAttribute("disabled", "");
+                    children2[i].setAttribute("disabled", "");
+                    launch_btn.setAttribute("disabled", "");
+                }
+            }
+        }
+
+        function checkLaunch() {
+            let parent1 = document.getElementsByClassName("check-buttons")[0];
+            let parent2 = document.getElementsByClassName("levers")[0];
+            let children = parent1.children;
+            let children2 = parent2.children;
+            let launch_btn = document.getElementById("launch-btn");
+
+            for (let i = 0; i < children.length; i++) {
+                if (!children[i].checked) {
+                    return;
+                }
+                if (i < 5) {
+                    if (children2[i].value != "100") {
+                        return;
+                    }
+                }
+            }
+            launch_btn.removeAttribute("disabled");
+        }
+
+        function launchRocket() {
+            const spaceShip = document.getElementsByClassName("rocket")[0];
+            let top = 125;
+            let right = 120;
+
+            let id = null;
+            clearInterval(id);
+            id = setInterval(frame, 5);
+            function frame() {
+                if (top == -300) {
+                    clearInterval(id);
+                } else {
+                    top--;
+                    right--;
+                    spaceShip.style.top = top + 'px';
+                    spaceShip.style.right = right + 'px';
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div class="space">
+        <div class="planet-area">
+            <img class="planet" src="mars.png">
+            <img class="rocket" src="rocket.png">
+        </div>
+        <div class="control-panel">
+            <div class="control-panel__inner">
+                <input id="password" type="password" placeholder="Enter password to unlock">
+                <input id="ok" type="button" value="OK" onclick="checkPassword()">
+                <div class="check-buttons">
+                    <input type="checkbox" onchange="checkLaunch()">
+                    <input type="checkbox" onchange="checkLaunch()">
+                    <input type="checkbox" onchange="checkLaunch()">
+                    <input type="checkbox" onchange="checkLaunch()">
+                    <input type="checkbox" onchange="checkLaunch()">
+                    <input type="checkbox" onchange="checkLaunch()">
+                </div>
+                <div class="levers">
+                    <input type="range" class="slider" onchange="checkLaunch()">
+                    <input type="range" class="slider" onchange="checkLaunch()">
+                    <input type="range" class="slider" onchange="checkLaunch()">
+                    <input type="range" class="slider" onchange="checkLaunch()">
+                    <input type="range" class="slider" onchange="checkLaunch()">
+                </div>
+                <input id="launch-btn" type="button" onclick="launchRocket()" value="Launch">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
